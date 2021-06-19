@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: micronuat.cassandra.sample
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, cassandra, gradle, http-client, java, java-application, junit, logback, netty-server, readme, shade, yaml]
