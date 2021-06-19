@@ -5,7 +5,9 @@ plugins {
 
 version = "0.1"
 group = "micronuat.cassandra.sample"
+apply plugin: 'java'
 
+def javaDriverVersion = '8'
 repositories {
     mavenCentral()
 }
@@ -15,16 +17,24 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("micronuat.cassandra.sample.*")
+        annotations("micronuat.cassandra.sample.*","com.abhi.micronaut")
     }
 }
 
 dependencies {
     implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut.reactor:micronaut-reactor:1.1.0")
     implementation("io.micronaut:micronaut-runtime")
+    implementation("io.micronaut.cassandra:micronaut-cassandra")
     implementation("io.micronaut.cassandra:micronaut-cassandra")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor group: 'com.datastax.oss', name: 'java-driver-mapper-processor', version: javaDriverVersion
+    compile group: 'com.datastax.oss', name: 'java-driver-mapper-runtime', version: javaDriverVersion
 
 }
 
