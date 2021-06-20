@@ -3,8 +3,15 @@ micronaut:
     name: micronuatCassandraSample
 cassandra:
   default:
-    clusterName: '"myCluster"'
-    contactPoint: '"localhost"'
+    clusterName: 'Test Cluster'
+    contactPoint: '0.0.0.0'
+    datacenter: "datacenter1"
+    keyspace: "store"
     port: 9042
     maxSchemaAgreementWaitSeconds: 20
     ssl: true
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**

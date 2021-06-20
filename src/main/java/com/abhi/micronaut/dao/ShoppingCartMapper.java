@@ -12,5 +12,5 @@ import javax.inject.Singleton;
     @Mapper
     public interface ShoppingCartMapper {
         @DaoFactory
-        ShoppingCartDao productDao(@DaoKeyspace CqlIdentifier keyspace);
+        ShoppingCartDao storeDao(@DaoKeyspace CqlIdentifier keyspace);
     }

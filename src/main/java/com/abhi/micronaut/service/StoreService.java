@@ -1,35 +1,42 @@
 package com.abhi.micronaut.service;
 
 
+import com.abhi.micronaut.config.CassandraConfig;
+import com.abhi.micronaut.dao.ShoppingCartDao;
 import com.abhi.micronaut.dao.ShoppingCartMapper;
+import com.abhi.micronaut.dao.ShoppingCartMapperBuilder;
 import com.abhi.micronaut.model.ShoppingCart;
 import com.abhi.micronaut.model.ShoppingModel;
+import com.datastax.oss.driver.api.core.CqlIdentifier;
 import com.datastax.oss.driver.api.core.CqlSession;
+import io.micronaut.context.annotation.Requires;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.Instant;
 
 @Singleton
-public class StoreService{
+@Requires(beans = {CassandraConfig.class,CqlSession.class})
+public class StoreService {
 
 
-@Inject
+    @Inject
     CqlSession session;
 
 
-
-    public ShoppingCart createUser(ShoppingModel model){
-
-        ShoppingCart cart=new    ShoppingCart(model.getUserId(),model.getCount(),new Timestamp(new Date().getTime()));
+    public ShoppingCart createUser(ShoppingModel model) {
 
 
-        //ShoppingCartMapper inventoryMapper = new ShoppingCartMapperBuilder(session).build();
+        ShoppingCart cart = new ShoppingCart(model.getUserId(), model.getCount(), Instant.now());
 
-         return cart;
+        ShoppingCartMapper storeMapper = new ShoppingCartMapperBuilder(session).build();
+
+        ShoppingCartDao shoppingDao = storeMapper.storeDao(CqlIdentifier.fromCql("store"));
+
+        shoppingDao.save(cart);
+
+        return cart;
     }
-
 
 
 }
