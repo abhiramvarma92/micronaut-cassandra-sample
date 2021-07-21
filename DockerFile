@@ -1,0 +1,26 @@
+FROM gradle:7.1.0-jdk8
+WORKDIR /micronaut
+EXPOSE 9042
+USER root
+RUN apt-get update
+RUN apt-get -qq -y install curl  telnet wget  && apt-get install -y software-properties-common &&  apt-get -y install apt  && apt -y install zip && apt -y install unzip && apt install -y  wget && apt install -y gnupg
+RUN wget -O- https://apt.corretto.aws/corretto.key | apt-key add - && add-apt-repository 'deb https://apt.corretto.aws stable main'
+RUN apt-get install -y java-1.8.0-amazon-corretto-jdk
+
+WORKDIR /app
+COPY build.gradle gradle.properties settings.gradle /app/
+
+# Only download dependencies
+# Eat the expected build failure since no source code has been copied yet
+RUN gradle clean build --no-daemon > /dev/null 2>&1 || true
+
+
+COPY . /app
+RUN gradle clean build --no-daemon
+CMD ["gradle","run"]
+
+
+
+
+
+

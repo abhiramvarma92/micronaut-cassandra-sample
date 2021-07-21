@@ -1,10 +1,12 @@
 micronaut:
+  server:
+    port: 8086
   application:
     name: micronuatCassandraSample
 cassandra:
   default:
     clusterName: 'Test Cluster'
-    contactPoint: '0.0.0.0'
+    contactPoint: 'cassandra'
     datacenter: "datacenter1"
     keyspace: "store"
     port: 9042

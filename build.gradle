@@ -50,5 +50,16 @@ java {
     targetCompatibility = JavaVersion.toVersion("1.8")
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'micronuat.cassandra.sample.Application'
+        )
+    }
+}
+
+
+
+
 
 
