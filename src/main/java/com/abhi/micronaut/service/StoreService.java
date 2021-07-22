@@ -14,6 +14,7 @@ import io.micronaut.context.annotation.Requires;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.time.Instant;
+import java.util.List;
 
 @Singleton
 @Requires(beans = {CassandraConfig.class,CqlSession.class})
@@ -39,4 +40,26 @@ public class StoreService {
     }
 
 
+    public List<ShoppingCart> getUsers(){
+
+        
+        ShoppingCartMapper storeMapper = new ShoppingCartMapperBuilder(session).build();
+
+        ShoppingCartDao shoppingDao = storeMapper.storeDao(CqlIdentifier.fromCql("store"));
+        List<ShoppingCart> list=shoppingDao.findAll().all();
+
+        return list;
+
+
+    }
+
+    public String deleteUser(ShoppingModel model) {
+        ShoppingCart cart = new ShoppingCart(model.getUserId(), model.getCount(), Instant.now());
+        ShoppingCartMapper storeMapper = new ShoppingCartMapperBuilder(session).build();
+
+        ShoppingCartDao shoppingDao = storeMapper.storeDao(CqlIdentifier.fromCql("store"));
+
+        shoppingDao.delete(cart);
+        return String.format("Deleted User with Id : %s",cart.getUserid());
+    }
 }
