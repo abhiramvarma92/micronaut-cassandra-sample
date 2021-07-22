@@ -1,8 +1,16 @@
 **************** Micronaut Sample Application with Cassandra ******************
+Prerequisites:
+1)docker-desktop if you want to run cassandra in container and load keyspace and table as initialization data in cassandra.
+                                       
+                                       OR
+                                       
+If you  have cassandra running already then there is no need of docker compose just use data.cql script present in /cqlsh folder and initialize table in cassandra.
+
+
 
 Run Docker compose up command to start casssandra and micronaut at the same time
 command to start : docker-compose up
-Above command will start Micronaut 
+Above command will start Micronaut ,Cassandra and  
 
 ===================== Containers ================
 1) Micronaut
