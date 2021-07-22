@@ -9,15 +9,35 @@ Above command will start Micronaut
 2) Cassandra
 3) cqlsh
 
-=====================API =====================
-1) /createStoreUser
+=====================Sample APIs =====================
+1) POST request for adding new object
+  Request :  http://<ip>:<port>/createStoreUser
+  RequestMethod: POST
    definition: This is user for sample user creation
    body:
         {
-       "userId":"abhi26",
+       "userId":"userId",
        "count":21
         }
 
+
+2) GET request for getting all Users 
+ 
+  Request: http://ip:port/showUsers
+  RequestMethod: GET
+
+ definition: This is user for returning all Users
+   
+3) POST request for deleting  new object
+  Request :  http://<ip>:<port>/deleteUser
+  RequestMethod: POST
+   definition: This is user for sample user creation
+   body:
+        {
+       "userId":"userId",
+       "count":21
+        }
+ 
 
 ============    Micronaut references ===========
 - [User Guide](https://docs.micronaut.io/2.5.4/guide/index.html)
