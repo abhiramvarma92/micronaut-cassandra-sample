@@ -6,6 +6,12 @@ plugins {
 version = "0.1"
 group = "micronuat.cassandra.sample"
 
+
+apply plugin: 'java'
+
+def javaDriverVersion = '4.9.0'
+def lombokVersion = '1.18.20'
+//def swaggerVersion = '2.5.0'
 repositories {
     mavenCentral()
 }
@@ -15,17 +21,24 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("micronuat.cassandra.sample.*")
+        annotations("micronuat.cassandra.sample.*","com.abhi.micronaut.*")
     }
 }
-
+apply plugin: 'java'
 dependencies {
     implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut.reactor:micronaut-reactor:1.1.0")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut.cassandra:micronaut-cassandra")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
+    implementation("io.swagger.core.v3:swagger-annotations:2.1.9")
+    implementation("io.springfox:springfox-swagger-ui:2.5.0")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi:2.5.0")
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'com.datastax.oss', name: 'java-driver-mapper-processor', version: javaDriverVersion
+    compileOnly group: 'com.datastax.oss', name: 'java-driver-mapper-runtime', version: javaDriverVersion
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 }
 
 
@@ -36,6 +49,17 @@ java {
     sourceCompatibility = JavaVersion.toVersion("1.8")
     targetCompatibility = JavaVersion.toVersion("1.8")
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'micronuat.cassandra.sample.Application'
+        )
+    }
+}
+
+
+
 
 
 

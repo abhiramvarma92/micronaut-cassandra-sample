@@ -1,0 +1,17 @@
+version: "3"
+services:
+     cassandra:
+         image: cassandra:latest
+         ports:
+         - "9042:9042"
+     micronaut:
+          build: .
+          tty: true
+          ports:
+            - "8080:8086"
+     cqlsh:
+          build: cqlsh
+          tty: true
+          depends_on:
+            - cassandra
+
