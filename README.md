@@ -36,10 +36,10 @@ Above command will start Micronaut ,Cassandra and
 
  definition: This is user for returning all Users
    
-3) POST request for deleting  new object
+3) POST request for deleting User
   Request :  http://<ip>:<port>/deleteUser
-  RequestMethod: POST
-   definition: This is user for sample user creation
+  RequestMethod: DELETE
+   definition: This is  for sample user deletion
    body:
         {
        "userId":"userId",

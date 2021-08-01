@@ -1,17 +1,18 @@
 micronaut:
   server:
-    port: 8086
+    port: 8084
   application:
     name: micronuatCassandraSample
 cassandra:
   default:
     clusterName: 'Test Cluster'
-    contactPoint: 'cassandra'
+    contactPoint: '0.0.0.0'
     datacenter: "datacenter1"
     keyspace: "store"
     port: 9042
     maxSchemaAgreementWaitSeconds: 20
     ssl: true
+    sessionLimit: 20
   router:
     static-resources:
       swagger:

@@ -8,5 +8,5 @@ last_update_timestamp timestamp
 );
 
 -- Insert some data
-INSERT INTO store.shopping_cart(userid, item_count, last_update_timestamp) VALUES ('9876', 2, toTimeStamp(now()));
-INSERT INTO store.shopping_cart(userid, item_count, last_update_timestamp) VALUES ('1234', 5, toTimeStamp(now()));
+INSERT INTO store.shopping_cart(userid, item_count, last_update_timestamp) VALUES ('abhi', 2, toTimeStamp(now()));
+INSERT INTO store.shopping_cart(userid, item_count, last_update_timestamp) VALUES ('ram', 5, toTimeStamp(now()));
