@@ -16,16 +16,8 @@ import java.time.Instant;
 @NoArgsConstructor
 public class ShoppingCart {
 
-
-
-
-
-
-
-
-
     @PartitionKey String userid;
-private int item_count;
+private Integer item_count;
 private Instant last_update_timestamp;
 
 

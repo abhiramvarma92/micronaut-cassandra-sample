@@ -15,4 +15,5 @@ public class CassandraProperties {
     private boolean ssl;
     private String datacenter;
     private String keyspace;
+    private int sessionLimit;
 }
