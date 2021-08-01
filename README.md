@@ -20,7 +20,7 @@ Above command will start Micronaut ,Cassandra and
 3) cqlsh
 
 =====================Sample APIs =====================
-1) POST request for adding new object
+1) POST request for adding new User
   Request :  http://<ip>:<port>/createStoreUser
   RequestMethod: POST
    definition: This is user for sample user creation
@@ -38,15 +38,11 @@ Above command will start Micronaut ,Cassandra and
 
  definition: This is user for returning all Users
    
-3) POST request for deleting User
-  Request :  http://<ip>:<port>/deleteUser
+3) DELETE request for deleting User
+  Request :  http://<ip>:<port>/deleteUser/{userId}
   RequestMethod: DELETE
-   definition: This is  for sample user deletion
-   body:
-        {
-       "userId":"userId",
-       "count":21
-        }
+   definition: This is  for  user deletion
+  
  
 
 ============    Micronaut references ===========
