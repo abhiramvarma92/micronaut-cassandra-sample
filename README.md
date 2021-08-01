@@ -1,4 +1,6 @@
 **************** Micronaut Sample Application with Cassandra ******************
+
+
 Prerequisites:
 1)docker-desktop if you want to run cassandra in container and load keyspace and table as initialization data in cassandra.
                                        
