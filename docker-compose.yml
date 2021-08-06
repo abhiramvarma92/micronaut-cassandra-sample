@@ -8,10 +8,28 @@ services:
           build: .
           tty: true
           ports:
-            - "8080:8086"
+            - "9090:8086"
+          environment:
+            - cassandra_host=cassandra
      cqlsh:
           build: cqlsh
           tty: true
           depends_on:
             - cassandra
+     jmeter:
+       build: jmeter
+       tty: true
+       depends_on:
+         - micronaut
+       environment:
+         - SERVICE_HOST=micronaut
+         - SERVICE_PORT=8086
+         - version=5.4.1
+       volumes:
+         - type: bind
+           source: ./reports
+           target: /jmeter/reports
+
+volumes:
+  reports:
 
