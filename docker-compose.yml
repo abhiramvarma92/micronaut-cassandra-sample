@@ -2,6 +2,7 @@ version: "3"
 services:
      cassandra:
          image: cassandra:latest
+         tty: true
          ports:
          - "9042:9042"
      micronaut:

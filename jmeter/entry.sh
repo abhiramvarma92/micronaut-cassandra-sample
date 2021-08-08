@@ -1,14 +1,20 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 echo "*************Running entry.sh file**********"
 
 pwd
 ls
 
+export CQLVERSION=${CQLVERSION:-"3.4.4"}
+export CQLSH_HOST=${CQLSH_HOST:-"cassandra"}
+export CQLSH_PORT=${CQLSH_PORT:-"9042"}
 
-echo "Starting JMeter tests on ${SERVICE_HOST}:${SERVICE_PORT}"
 
 
+until  nc -z cassandra 9042
+do
+    echo 'sleeping for cassandra'
+    sleep 10
+done
 
 until $(curl --output /dev/null --silent --head --fail http://${SERVICE_HOST}:${SERVICE_PORT}/showUsers); do
     echo 'sleeping'
@@ -17,9 +23,14 @@ done
 
 
 
+
 #Command
 ls
-sh  bin/jmeter.sh -n -t   build-adv-web-test-plan_micronaut.jmx -l 'jmeter.log'  -e -o  reports --forceDeleteResultFile
+timestamp=$(date +%d-%m-%Y_%H-%M-%S)
+rm -rf reports
+sh  bin/jmeter.sh -n -t   build-adv-web-test-plan_micronaut.jmx -l jmeter.log${timestamp}  -e -o   reports --forceDeleteResultFile
+
+
 
 
 echo "********entry.sh file RAN SUCCESSFULLY*******"

@@ -6,7 +6,7 @@ micronaut:
 cassandra:
   default:
     clusterName: 'Test Cluster'
-    contactPoint: '${cassandra_host:localhost}'
+    contactPoint: 'cassandra'
     datacenter: "datacenter1"
     keyspace: "store"
     port: 9042
